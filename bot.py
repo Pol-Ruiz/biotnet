@@ -1,4 +1,5 @@
-# bot.py
-class Bot:
-    def run(self):
-        print("Hello World")
+import subprocess
+
+def run():
+       print("Hello World")
+run()
