@@ -6,13 +6,13 @@ import time
 import os
 
 
-username='<username>'
+username='Pol-Ruiz'
 token='<token>'
-repo='<repo>'
+repo='botnet'
 
 
 url='https://api.github.com/repos/<user>/<repo>/contents/<filename>'
-filename='<filename.py>'
+filename='botnet.py'
 sleep_time=5
 filename_sha=None
 bot=None
