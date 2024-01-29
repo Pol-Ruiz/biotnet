@@ -1,5 +1,5 @@
 import subprocess
-
-def run():
-       print("Hello World")
+class bot:
+       def run():
+              print("Hello World")
 run()
