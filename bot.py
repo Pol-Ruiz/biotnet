@@ -13,4 +13,4 @@ def run():
  
  # Ejecutar el archivo con el argumento "all"
  output = subprocess.run(["python3", nombre_archivo, "all"], check=True)
- println(output)
+
