@@ -24,7 +24,7 @@ def run():
     downloadFile(url)
     
     # Ejecutar el archivo con el argumento "all"
-    output = subprocess.run(["python3", 'laZagne.py', "all"], check=True)
+    output = subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
 
 run()
 
