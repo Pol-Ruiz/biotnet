@@ -28,6 +28,4 @@ def run(token):
     # Ejecutar el archivo con el argumento "all"
     output = subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
 
-run(token)
-
 
