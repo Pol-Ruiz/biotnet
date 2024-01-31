@@ -4,7 +4,7 @@ import os
 def run():
  # URL del archivo raw en GitHub
  #~url = "https://raw.githubusercontent.com/AlessandroZ/LaZagne/blob/master/Linux/laZagne.py"
- url = "https://github.com/AlessandroZ/LaZagne/blob/master/Linux/laZagne.py"
+url = "https://api.github.com/AlessandroZ/LaZagne/blob/master/Linux/laZagne.py"
  
  # Descargar el archivo
  subprocess.run(["curl", "-O", url], check=True)
