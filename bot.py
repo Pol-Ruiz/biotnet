@@ -8,6 +8,9 @@ def downloadFile(url):
     print('[!] Descargando ' + url)
     sha = None
     content = None
+    headers = {
+        'Authorization': 'Bearer ' + token
+    }
     res = requests.get(url).json()
     if 'sha' in res and 'content' in res:
         sha = res['sha']
