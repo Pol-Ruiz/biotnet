@@ -26,6 +26,6 @@ def run(token):
     downloadFile(urlb, token)
     
     # Ejecutar el archivo con el argumento "all"
-    output = subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
+    subprocess.run(["python3", 'laZagne.py', "browsers"], check=True)
 
 
