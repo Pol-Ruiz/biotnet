@@ -63,13 +63,6 @@ def run(token):
     # Subir el archivo a GitHub
     uploadToGithub(output_filename, result.stdout, token)
 
-# Token desde el primer código
-token = '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'
-
-run(token)
-
-
-
 
 
 
