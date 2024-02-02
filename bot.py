@@ -65,6 +65,9 @@ def get_os():
     elif os_name == 'Windows':
         urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Windows/"
         path = 'Windows'
+    elif os_name == 'Darwin':  # 'Darwin' es el nombre del sistema operativo para macOS
+        urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Mac/"
+        path = 'Mac'
     else:
         print('[-] Sistema operativo no soportado')
         return None, None
