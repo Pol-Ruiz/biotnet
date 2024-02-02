@@ -1,0 +1,28 @@
+[93m
+|====================================================================|
+|                                                                    |
+|                        The LaZagne Project                         |
+|                                                                    |
+|                          ! BANG BANG !                             |
+|                                                                    |
+|====================================================================|
+
+[0m[93m[0m[91m[-] libsecret: No module named 'secretstorage'
+[0m[91m[-] Module Rclone is not used due to unresolved dependence:
+No module named 'Crypto'
+[0m[91m[-] Module SQLDeveloper is not used due to unresolved dependence:
+No module named 'Crypto'
+[0m[91m[-] Module ChromiumBased is not used due to unresolved dependence:
+No module named 'Crypto'
+[0m[93m------------------- Firefox passwords -----------------
+
+[0m[92m[+] Password found !!!
+[0mURL: http://127.0.0.1:31337
+Login: admin
+Password: #&?}ReH:9n4.:^u
+
+
+[+] 1 passwords have been found.
+For more information launch it again with the -v option
+
+elapsed time = 0.11689591407775879
